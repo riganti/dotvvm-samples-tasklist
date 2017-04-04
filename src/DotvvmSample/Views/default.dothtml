@@ -1,0 +1,39 @@
+﻿@viewModel DotvvmSample.ViewModels.DefaultViewModel, DotvvmSample
+
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <style>
+        .completed {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+
+	<h1>Task List</h1>
+
+    <div>
+        <dot:TextBox Text="{value: NewTaskText}" />
+        <dot:Button Text="Add Task" Click="{command: AddNewTask()}" />
+    </div>
+
+    <dot:Repeater DataSource="{value: Tasks}">
+
+        <p class-completed="{value: CompletedDate != null}">
+            {{value: Text}}
+
+            <dot:LinkButton Text="[Completed]" Click="{command: _root.CompleteTask(_this)}"
+                            Visible="{value: CompletedDate == null}"/>
+
+            <small><dot:Literal Text="{value: CompletedDate}" FormatString="yyyy/MM/dd" /></small>
+        </p>
+
+    </dot:Repeater>
+
+</body>
+</html>
